@@ -3,9 +3,8 @@ import mouse
 
 
 class Test():
-    def __init__(self, user_id, user_name):
-        self.user_id = user_id
-        self.user_name = user_name
+    def __init__(self):
+        self = self
 
     def start():
         initial_val = 500001
