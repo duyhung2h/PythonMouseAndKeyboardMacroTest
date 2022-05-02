@@ -7,8 +7,16 @@ from macro_functions.JSON_to_pylist import JSONToPyList
 from exit_functions.key_input import KeyInput
 
 time.sleep(0.9)
-# Test.start()
 KeyInput.exit_listener()
+# ~~~~TEST FUNCTIONS~~~
+import pyautogui
+while True:
+    x, y = pyautogui.position()
+    px = pyautogui.pixel(x, y)
+    print(px) # (240, 240, 240)
+
+
+# Test.start()
 
 # ~~~~~~~~~~~~~~
 export_to_list = ExportToList()
