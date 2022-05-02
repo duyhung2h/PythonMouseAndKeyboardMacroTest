@@ -9,5 +9,9 @@ from exit_functions.key_input import KeyInput
 time.sleep(0.9)
 # Test.start()
 KeyInput.exit_listener()
-ExportToList.start()
+
+# ~~~~~~~~~~~~~~
+export_to_list = ExportToList()
+export_to_list.start()
+# ~~~~~~~~~~~~~~
 # JSONToPyList.start()
