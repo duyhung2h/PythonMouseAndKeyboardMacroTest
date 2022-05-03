@@ -67,7 +67,7 @@ class ExportToList():
                 time.sleep(1.000)
                 print(ex)
                 print("index " + str(self.current_index) + ": rescanning...")
-                # self.fill_dummy_value("1000000")
+                self.fill_dummy_value("1000000")
                 number_of_tries = 0
 
     def start(self):
