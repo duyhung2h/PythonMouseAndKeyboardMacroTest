@@ -7,6 +7,9 @@ import pyscreenshot
 from screen_location.screen_location_data import ScreenLocationData
 # from PIL import ImageGrab
 
+TF_LANGUAGE_FILENAME = 0
+TF_INTERNAL_UNIT_NAME = 1
+copy_from_field = TF_INTERNAL_UNIT_NAME
 
 class ExportToList():
     def __init__(self):
@@ -96,9 +99,13 @@ class ExportToList():
         keyboard.press("shift")
         mouse.click("left")
         keyboard.release("shift")
-        # select language file name box
-        mouse.move(self.location.name_box.x,
-                   self.location.name_box.y, absolute=True, duration=.1)
+        # select copy textfield box
+        if copy_from_field == TF_LANGUAGE_FILENAME:
+            mouse.move(self.location.name_box.x,
+                       self.location.name_box.y, absolute=True, duration=.1)
+        elif copy_from_field == TF_INTERNAL_UNIT_NAME:
+            mouse.move(self.location.iu_name_box.x,
+                       self.location.iu_name_box.y, absolute=True, duration=.1)
         # keyboard.wait("capslock")   #TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-
         mouse.click("left")
         time.sleep(0.000)
@@ -145,8 +152,14 @@ class ExportToList():
 
         # write to JSON file!
         jsonStr = json.dumps({'items': self.name_list})
-        f = open("exported_JSON/JSON_old.json", "a")
-        # f = open("exported_JSON/JSON_new.json", "a")
+        # f = open()
+        # select copy textfield box
+        if copy_from_field == TF_LANGUAGE_FILENAME:
+            f = open("exported_JSON/JSON_old.json", "a")
+            # f = open("exported_JSON/JSON_new.json", "a")
+        elif copy_from_field == TF_INTERNAL_UNIT_NAME:
+            f = open("exported_JSON/JSON_iuname_old.json", "a")
+            # f = open("exported_JSON/JSON_iuname_new.json", "a")
         f.truncate(0)
         f.write(jsonStr)
         f.close()

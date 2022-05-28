@@ -38,8 +38,9 @@ KeyInput.exit_listener()
 # Test.start()
 
 # ~~~~~~~~~~~~~~
-# export_to_list = ExportToList()
-# export_to_list.start()
+export_to_list = ExportToList()
+export_to_list.start()
 # ~~~~~~~~~~~~~~
-JSONToPyList = JSONToPyList()
-JSONToPyList.start()
+# JSONToPyList = JSONToPyList()
+# JSONToPyList.start()
+# JSONToPyList.fetch_list()
