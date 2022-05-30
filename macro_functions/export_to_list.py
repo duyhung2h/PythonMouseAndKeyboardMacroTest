@@ -5,20 +5,27 @@ from tkinter import Tk
 import json
 import pyscreenshot
 from screen_location.screen_location_data import ScreenLocationData
+import gc
+
 # from PIL import ImageGrab
 
 TF_LANGUAGE_FILENAME = 0
 TF_INTERNAL_UNIT_NAME = 1
 copy_from_field = TF_INTERNAL_UNIT_NAME
 
+
 class ExportToList():
     def __init__(self):
         # 1800 units as of now
         # 278 to get to special area
-        self.amount_to_update = 1800 + (1)
+        self.amount_to_update = 40 + (1)
         self.current_index = 0
         self.name_list = []
         self.location = ScreenLocationData()
+
+    def insert_to_JSON_file(self, item):
+        # write insert one item to JSON file item list at the end here
+        item
 
     def fill_dummy_value(self, value):
         mouse.move(self.location.dump_box.x,
@@ -46,21 +53,58 @@ class ExportToList():
                     px = screen.load()
                     m = px[0, 0]
                     print(m)
-                    mouse.move(self.location.name_box.x,
-                               self.location.name_box.y, absolute=True, duration=.000)
+                    # select copy textfield box
+                    if copy_from_field == TF_LANGUAGE_FILENAME:
+                        mouse.move(self.location.name_box.x,
+                                   self.location.name_box.y, absolute=True, duration=.1)
+                    elif copy_from_field == TF_INTERNAL_UNIT_NAME:
+                        mouse.move(self.location.iu_name_box.x,
+                                   self.location.iu_name_box.y, absolute=True, duration=.1)
                     print(str(Tk().clipboard_get()) + "(clipboard) " + str(m) + "(color) " +
                           str(self.current_index) + "(currentIndex) ")  # (240, 240, 240)
                     while str(Tk().clipboard_get()) == '1000000' and m == (215, 255, 255):
                         mouse.click("left")
                         time.sleep(0.000)
+                        keyboard.press('0')
+                        time.sleep(0.001)
+                        keyboard.press('shift')
+                        time.sleep(0.001)
+                        keyboard.press("left")
+                        time.sleep(0.001)
+                        keyboard.release('shift')
+                        time.sleep(0.001)
+                        keyboard.press('ctrl+x')
+                        time.sleep(0.001)
+                        keyboard.release('ctrl+x')
+                        time.sleep(0.001)
+                    while str(Tk().clipboard_get()) == '0' and m == (215, 255, 255):
                         keyboard.press('ctrl+a')
                         keyboard.release('ctrl+a')
-                        time.sleep(0.000)
+                        time.sleep(0.001)
                         keyboard.press('ctrl+c')
                         keyboard.release('ctrl+c')
-                        time.sleep(0.000)
-                    self.name_list.append(
-                        {str(self.current_index): int(Tk().clipboard_get())})
+                        time.sleep(0.001)
+                        mouse.click("left")
+                        time.sleep(0.001)
+                        keyboard.press('left')
+                        time.sleep(0.001)
+                        keyboard.press('space')
+                    # append to JSON
+                    if copy_from_field == TF_LANGUAGE_FILENAME:
+                        self.name_list.append(
+                            {str(self.current_index): int(Tk().clipboard_get())})
+                    elif copy_from_field == TF_INTERNAL_UNIT_NAME:
+                        self.name_list.append(
+                            {str(self.current_index): str(Tk().clipboard_get())})
+                    keyboard.press('backspace')
+                    # garbage collection
+                    del number_of_tries
+                    del screen
+                    del px
+                    del m
+
+                    del self.name_list
+                    gc.collect()
                     break
                 else:
                     print("fill 1000000")
@@ -79,6 +123,28 @@ class ExportToList():
         # mouse.move(self.location.scroll_top.x, self.location.scroll_top.y, absolute=False, duration=.2)
         # keyboard.wait("capslock")   #TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-
         # ~~~~start
+
+        # # move up a notch
+        # mouse.move(self.location.scroll_top.x,
+        #            self.location.scroll_top.y, absolute=True, duration=.2)
+        # for i in range(0, 60, 1):
+        #     mouse.double_click("left")
+        # # click first item
+        # mouse.move(self.location.first_item.x,
+        #            self.location.first_item.y, absolute=True, duration=.2)
+        # mouse.click("left")
+        # if copy_from_field == TF_LANGUAGE_FILENAME:
+        #     mouse.move(self.location.name_box.x,
+        #                self.location.name_box.y, absolute=True, duration=.1)
+        # elif copy_from_field == TF_INTERNAL_UNIT_NAME:
+        #     mouse.move(self.location.iu_name_box.x,
+        #                self.location.iu_name_box.y, absolute=True, duration=.1)
+        # # keyboard.wait("capslock")   #TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-
+        # mouse.click("left")
+        # time.sleep(0.000)
+        # keyboard.press('ctrl+a')
+        # keyboard.release('ctrl+a')
+
         # move up a notch
         mouse.move(self.location.scroll_top.x,
                    self.location.scroll_top.y, absolute=True, duration=.2)
@@ -88,45 +154,17 @@ class ExportToList():
         mouse.move(self.location.first_item.x,
                    self.location.first_item.y, absolute=True, duration=.2)
         mouse.click("left")
-        # move down a notch
-        mouse.move(self.location.scroll_bottom.x,
-                   self.location.scroll_bottom.y, absolute=True, duration=.2)
-        for i in range(0, 60, 1):
-            mouse.double_click("left")
-        # shift click select all
-        mouse.move(self.location.last_item.x,
-                   self.location.last_item.y, absolute=True, duration=.2)
-        keyboard.press("shift")
-        mouse.click("left")
-        keyboard.release("shift")
-        # select copy textfield box
-        if copy_from_field == TF_LANGUAGE_FILENAME:
-            mouse.move(self.location.name_box.x,
-                       self.location.name_box.y, absolute=True, duration=.1)
-        elif copy_from_field == TF_INTERNAL_UNIT_NAME:
-            mouse.move(self.location.iu_name_box.x,
-                       self.location.iu_name_box.y, absolute=True, duration=.1)
-        # keyboard.wait("capslock")   #TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-
-        mouse.click("left")
-        time.sleep(0.000)
-        keyboard.press('ctrl+a')
-        keyboard.release('ctrl+a')
-        # move up a notch
-        mouse.move(self.location.scroll_top.x,
-                   self.location.scroll_top.y, absolute=True, duration=.2)
         for i in range(0, 60, 1):
             mouse.double_click("left")
         # fill first page
         for i in range(0, 30, 1):
             # do shit
             # copy found value to List
-            self.get_name_value()
-            self.current_index = self.current_index + 1
             mouse.move(self.location.first_item.x, self.location.first_item.y
                        + i*self.location.row_length, absolute=True, duration=.001)
-            keyboard.press("ctrl")
             mouse.click("left")
-            keyboard.release("ctrl")
+            self.get_name_value()
+            self.current_index = self.current_index + 1
             # -----------------------
 
         # Shift the page up again to start amend at the bottom

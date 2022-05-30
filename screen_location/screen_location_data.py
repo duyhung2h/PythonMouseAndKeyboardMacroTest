@@ -32,8 +32,8 @@ class ScreenLocationData:
         self.first_item = XY(100, 265)
         self.last_item = XY(100, 660)
         # textbox
-        self.iu_name_box = XY(260, 240)  # internal unit name
-        self.name_box = XY(260, 300)
+        self.iu_name_box = XY(360, 240)  # internal unit name
+        self.name_box = XY(360, 300)
         self.dump_box = XY(260, 570)
         # item row length
         self.row_length = 13.5
