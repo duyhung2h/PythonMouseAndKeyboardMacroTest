@@ -124,27 +124,6 @@ class ExportToList():
         # keyboard.wait("capslock")   #TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-
         # ~~~~start
 
-        # # move up a notch
-        # mouse.move(self.location.scroll_top.x,
-        #            self.location.scroll_top.y, absolute=True, duration=.2)
-        # for i in range(0, 60, 1):
-        #     mouse.double_click("left")
-        # # click first item
-        # mouse.move(self.location.first_item.x,
-        #            self.location.first_item.y, absolute=True, duration=.2)
-        # mouse.click("left")
-        # if copy_from_field == TF_LANGUAGE_FILENAME:
-        #     mouse.move(self.location.name_box.x,
-        #                self.location.name_box.y, absolute=True, duration=.1)
-        # elif copy_from_field == TF_INTERNAL_UNIT_NAME:
-        #     mouse.move(self.location.iu_name_box.x,
-        #                self.location.iu_name_box.y, absolute=True, duration=.1)
-        # # keyboard.wait("capslock")   #TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-TEST-
-        # mouse.click("left")
-        # time.sleep(0.000)
-        # keyboard.press('ctrl+a')
-        # keyboard.release('ctrl+a')
-
         # move up a notch
         mouse.move(self.location.scroll_top.x,
                    self.location.scroll_top.y, absolute=True, duration=.2)
