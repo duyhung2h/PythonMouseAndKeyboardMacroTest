@@ -10,8 +10,8 @@ class ScreenLocationData:
         # add 50, 75
 
         self.color_check = XY(350, 375)
-        '''
-        # Scroll
+
+        # new value
         self.scroll_top = XY(250, 345)
         self.scroll_bottom = XY(250, 820)
         # item
@@ -22,8 +22,8 @@ class ScreenLocationData:
         self.dump_box = XY(350, 740)
         # item row length
         self.row_length = 17
-        '''
 
+        '''
         # old value
         # Scroll
         self.scroll_top = XY(200, 275)
@@ -37,3 +37,4 @@ class ScreenLocationData:
         self.dump_box = XY(260, 570)
         # item row length
         self.row_length = 13.5
+        '''
