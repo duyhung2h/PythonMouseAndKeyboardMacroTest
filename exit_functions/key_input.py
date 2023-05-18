@@ -28,7 +28,7 @@ class KeyInput():
                 keyboard.wait(key)
                 print("[+] Pressed", key)
                 if key == "esc":
-                    # os._exit(1)
+                    os._exit(1)
                     sys.exit(1)
 
         threads = [Thread(target=listen, kwargs={"key": key}) for key in keys]
