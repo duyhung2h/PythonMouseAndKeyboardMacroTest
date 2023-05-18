@@ -3,6 +3,7 @@ import os
 import keyboard
 from threading import *
 import string
+import sys
 
 
 class KeyInput():
@@ -26,8 +27,9 @@ class KeyInput():
             while True:
                 keyboard.wait(key)
                 print("[+] Pressed", key)
-                if (key == "esc"):
-                    os._exit(1)
+                if key == "esc":
+                    # os._exit(1)
+                    sys.exit(1)
 
         threads = [Thread(target=listen, kwargs={"key": key}) for key in keys]
         for thread in threads:

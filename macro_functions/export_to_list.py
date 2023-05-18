@@ -24,7 +24,8 @@ class ExportToList():
         self.name_list = []
         self.location = ScreenLocationData()
         self.sleep_time = 0.001
-        # self.sleep_time = 1    def get_file_name(self):
+        # self.sleep_time = 1
+    def get_file_name(self):
         if copy_from_field == TF_LANGUAGE_FILENAME:
             file_name = "JSON_old.json"
             # file_name = "JSON_new.json"
