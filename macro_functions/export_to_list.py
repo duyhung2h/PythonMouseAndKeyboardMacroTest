@@ -12,7 +12,7 @@ import gc
 
 TF_LANGUAGE_FILENAME = 0
 TF_INTERNAL_UNIT_NAME = 1
-copy_from_field = TF_LANGUAGE_FILENAME
+copy_from_field = TF_INTERNAL_UNIT_NAME
 
 
 class ExportToList():
@@ -45,7 +45,7 @@ class ExportToList():
         keyboard.release('ctrl+a')
         keyboard.press('ctrl+c')
         keyboard.release('ctrl+c')
-        time.sleep(0.000)
+        time.sleep(self.sleep_time)
 
     def insert_to_json_file(self, item):
         # write insert one item to JSON file item list at the end here
@@ -63,6 +63,7 @@ class ExportToList():
                 feedsjson.write(',')
             feedsjson.write('\n')
             keyboard.press('backspace')
+            time.sleep(self.sleep_time*1000)
             del file_name
             del feeds
             del feedsjson
@@ -94,21 +95,30 @@ class ExportToList():
                     while str(Tk().clipboard_get()) == '1000000' and m == (215, 255, 255):
                         mouse.click("left")
                         time.sleep(self.sleep_time)
-                        keyboard.press('0')
-                        # time.sleep(self.sleep_time)
-                        # keyboard.press('shift')
-                        pyautogui.keyDown('shift')
+                        keyboard.press('space')
                         time.sleep(self.sleep_time)
-                        keyboard.press("left")
-                        # time.sleep(self.sleep_time)
-                        # keyboard.release('shift')
-                        pyautogui.keyUp('shift')
+                        keyboard.release('space')
+                        time.sleep(self.sleep_time)
+                        keyboard.press('1')
+                        time.sleep(self.sleep_time)
+                        keyboard.release('1')
+                        time.sleep(self.sleep_time)
+                        mouse.click("left")
+                        # mouse.click("left")
                         time.sleep(self.sleep_time)
                         keyboard.press('ctrl+x')
                         time.sleep(self.sleep_time)
                         keyboard.release('ctrl+x')
                         time.sleep(self.sleep_time)
-                    while str(Tk().clipboard_get()) == '0' and m == (215, 255, 255):
+                        keyboard.press('backspace')
+                        time.sleep(self.sleep_time*10)
+                        keyboard.release('backspace')
+                        time.sleep(self.sleep_time*1000)
+                        # keyboard.press('backspace')
+                        # keyboard.release('backspace')
+                        # time.sleep(self.sleep_time*100)
+                        # time.sleep(self.sleep_time*10000000000)
+                    while str(Tk().clipboard_get()) == '1' and m == (215, 255, 255):
                         keyboard.press('ctrl+a')
                         keyboard.release('ctrl+a')
                         time.sleep(self.sleep_time)
@@ -119,7 +129,11 @@ class ExportToList():
                         time.sleep(self.sleep_time)
                         keyboard.press('left')
                         time.sleep(self.sleep_time)
+                        keyboard.release('left')
+                        time.sleep(self.sleep_time)
                         keyboard.press('space')
+                        time.sleep(self.sleep_time*10)
+                        keyboard.release('space')
                     # append to JSON
                     item = {}
                     if copy_from_field == TF_LANGUAGE_FILENAME:
@@ -194,11 +208,13 @@ class ExportToList():
         # click down 1 item
         for i in range(30, self.amount_to_update, 1):
             mouse.move(self.location.last_item.x,
-                       self.location.last_item.y - 5, absolute=True, duration=self.sleep_time)
+                       self.location.last_item.y, absolute=True, duration=self.sleep_time)
             mouse.click("left")
-            mouse.move(self.location.last_item.x,
-                       self.location.last_item.y + 10, absolute=True, duration=self.sleep_time)
-            mouse.click("left")
+            time.sleep(self.sleep_time)
+            # mouse.move(self.location.last_item.x,
+            #            self.location.last_item.y + 10, absolute=True, duration=self.sleep_time)
+            # mouse.click("left")
+            # time.sleep(self.sleep_time*100)
             # copy found value to List
             self.get_name_value()
             self.current_index = self.current_index + 1

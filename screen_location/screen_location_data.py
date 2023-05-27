@@ -15,10 +15,11 @@ class ScreenLocationData:
         self.scroll_top = XY(250, 345)
         self.scroll_bottom = XY(250, 820)
         # item
-        self.first_item = XY(150, 335)
-        self.last_item = XY(150, 830)
+        self.first_item = XY(150, 337.5)
+        self.last_item = XY(150, 833)
         # textbox
-        self.name_box = XY(350, 375)
+        self.iu_name_box = XY(530, 305)  # internal unit name
+        self.name_box = XY(530, 375)
         self.dump_box = XY(350, 740)
         # item row length
         self.row_length = 17
